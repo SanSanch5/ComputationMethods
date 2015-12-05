@@ -1,4 +1,5 @@
 m=dlmread('input2.txt');
+clc;
 fprintf('Матрица стоимостей = \n');
 disp(m);
 

@@ -1,10 +1,5 @@
 function [assignment,cost] = hungarian_method_mod_inf(matr, maximization, debugging)
 
-if debugging
-    fprintf('Матрица стоимостей подзадачи = \n');
-    disp(matr);
-end;
-
 costMat = matr;
 if(maximization)
     costMat = -matr + max(max(matr));

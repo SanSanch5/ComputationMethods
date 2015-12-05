@@ -1,11 +1,11 @@
 function [assignment,cost] = knight_of_the_road(matr, debugging)
 
-xx = [0 1 0 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1; 1 0 0 0 0];
-ff = sum(sum(mult_matrixes_mod_inf(matr, xx)));
+assignment = [0 1 0 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 0 1; 1 0 0 0 0];
+cost = sum(sum(mult_matrixes_mod_inf(matr, assignment)));
 if debugging
     fprintf('\nНачальное x* = \n');
-    disp(xx);
-    fprintf('\nНачальное f* = %d\n\n', ff)
+    disp(assignment);
+    fprintf('\nНачальное f* = %d\n\n', cost)
 end;
 
 S = (matr);
@@ -17,15 +17,19 @@ while ~isempty(S)
     S(:,:,1) = [];
     if debugging
         fprintf('Метод ветвей и границ для З.К. Итерация %d\n', k);
+        fprintf('Матрица стоимостей подзадачи = \n');
+        disp(matr)
     end;
-    [assignment,cost] = hungarian_method_mod_inf(m, false, debugging); 
+    [xx,ff] = hungarian_method_mod_inf(m, false, false); 
     if debugging
-        fprintf('\nx(opt) = \n');
-        disp(assignment);
-        fprintf('\nf(opt) = %d\n\n', cost)
+        fprintf('\nf(opt) = %d\n\n', ff)
     end;
-    if cost < ff
-        cycles = getCycles(assignment);
+    if ff < cost
+        if debugging
+            fprintf('\nx(opt) = \n');
+            disp(xx);
+        end;
+        cycles = getCycles(xx);
         if debugging
             fprintf('Циклы:\n');
             for i=1:size(cycles,2)
@@ -34,10 +38,10 @@ while ~isempty(S)
         end;
         if size(cycles, 2) == 1 && size(cycles{1},1) == n
             if debugging
-                fprintf('Новое минимальное решение f* = %d\n', cost);
+                fprintf('Новое минимальное решение f* = %d\n', ff);
             end;
-            xx = assignment;
-            ff = cost;
+            assignment = xx;
+            cost = ff;
         else
             res_cycle = cycles{1};
             min_size = size(res_cycle, 1);

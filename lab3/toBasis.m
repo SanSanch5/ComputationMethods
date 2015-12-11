@@ -6,6 +6,8 @@ function [ii, jj] = toBasis(C, indexes)
 mi = 1 - indexesToMatrix(indexes);
 
 d = 0;
+ii = -1;
+jj = -1;
 for i = 1: m
     for j = 1: n
         if(mi(i, j) == 1)

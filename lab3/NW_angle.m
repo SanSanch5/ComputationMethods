@@ -6,7 +6,6 @@ n = length(D);
 i = 1;
 j = 1;
 x = zeros(m,n);
-disp(x);
 k = 1;
 while (i <= m && j <= n)
     indexes(k,:) = [i, j];
@@ -21,6 +20,5 @@ while (i <= m && j <= n)
         j = j + 1;
     end;    
 end;
-disp(x);
 end
 

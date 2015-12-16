@@ -1,6 +1,6 @@
-C = dlmread('costs.txt');
-S = dlmread('have.txt');
-D = dlmread('need.txt');
+C = dlmread('costs_lab1.txt');
+S = dlmread('have_lab1.txt');
+D = dlmread('need_lab1.txt');
 
 clc;
 

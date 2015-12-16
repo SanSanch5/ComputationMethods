@@ -8,6 +8,8 @@ if(debug_mode)
     disp(xx);
     fprintf('Стоимость:');
     disp(ff);
+    fprintf('Базисные переменные отмечены 1:\n');
+    disp(indexesToMatrix(indexes));
 end;
 
 k = 0;
@@ -31,6 +33,8 @@ while(true)
         fprintf('Элемент [%d, %d] из базиса\n', io, jo);
         fprintf('План перевозки:\n');
         disp(xx);
+        fprintf('Базисные переменные отмечены 1:\n');
+        disp(indexesToMatrix(indexes));
         fprintf('Стоимость:');
         disp(ff);
     end;
